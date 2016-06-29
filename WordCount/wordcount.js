@@ -1,6 +1,5 @@
 
-//var test = "je suis suis une une une une legende legende legende !!!";
-
+var test = "Je suis le plus beau, le plus grand, le plus fort. Mohamed Ali";
 
 function wordCount(string){
 	if(document.getElementById('text').value){
@@ -9,25 +8,56 @@ function wordCount(string){
 
 	}
 
+	//Verification et suppression des séparateur : . , ;
+	var virgule = string.split(',');
+	if(virgule){
+		var join = virgule.join(' ');
+	}
+	var point = join.split('.');
+	if(point){
+		var join = point.join(' ');
+	}
+	var pointVirgule = join.split(';');
+	if(pointVirgule){
+		var join = pointVirgule.join(' ');
+	}
+	var deuxPoint = join.split(':');
+	if(deuxPoint){
+		var join = deuxPoint.join(' ');
+	}
+	var enderscore = join.split('_');
+	if(enderscore){
+		join = enderscore.join(' ');
+	}
+	var traitUnion = join.split("-");
+	if(traitUnion){
+		join = traitUnion.join(' ');
+	}
+	
+	var arr = join.split(' ');	
+
+
 	document.getElementById('debut').textContent = string;
 
 	regexp = /[a-z]/; //regexp qui vas servir à verifier si la chaine de caractére contient bien que des lettres;
-			// Variable qui va servir de compteur pour le nombres de fois ou le mots vas être affiché;
+	var x = 0;	// Variable qui va servir de compteur pour le nombres de fois ou le mots vas être affiché;
 	var compteur = []; // Tableau final;
-	var arr = string.split(' '); //Transforme la chaine de carractere en tableau.
+	
 	var input; // Variable qui stockera chaque element du tableau à chaque tour de la boucle;
-	var x = 0;
+	
 
 	for(var i = 0; i <= arr.length - 1; i++){
 
-		input = arr[i]
+		input = arr[i].toLowerCase();
 		
 
-		if(regexp.test(input)){
+		if(regexp.test(input) || input.length === 1){
 
 			for(var j = 0; j <= arr.length - 1; j++){
+
+				var compare = arr[j].toLowerCase()
 			
-			if(input === arr[j]){
+			if(input === compare){
 
 				x++;
 
