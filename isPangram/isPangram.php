@@ -1,13 +1,63 @@
 <?php
 function isPangram($text)
 {
-    $array = explode($text);
 
-    echo $array;
+    $arr = array();
+    $sort = array();
 
+    $alpha = range('a', 'z');
+    $str = strtolower($text);
+    $split = str_split($str);
 
-    return false;
-}
+    for($i = 0; $i <= count($split) -1; $i++){
+
+        $input = $split[$i];
+
+        if(preg_match_all("/^[a-z]+$/", $input) == 1) {
+            array_push($arr, $input);
+        }
+
+    }
+        
+    for($x = 0; $x <= count($arr) - 1; $x++){
+
+        $input2 = $arr[$x];
+        if(array_search($input2, $sort) <= -1){
+
+            array_push($sort, $input2);
+
+        }
+
+    }
+    
+
+    $compteur = 0;
+
+    for($n = 0; $n <= count($sort) -1; $n++){
+
+            $input = $sort[$n];
+
+        for($t = 0; $t <= count($sort) -1; $t++){
+
+            if($input === $alpha[$n]){
+                $compteur++;
+            }else{
+                $compteur = $compteur;
+            }
+        }
+            
+    }
+
+    if($compteur === count($alpha)){
+        echo "ok !";
+        return true;
+    } else {
+        echo "error !";
+        return false;
+    }
+    
+};
+
 function test($expected, $result)
 {
     if ($expected != $result) {
